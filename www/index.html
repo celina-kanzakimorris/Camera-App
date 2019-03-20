@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="css/styles.css">
 
 
-    <script src="js/p5.js"></script>
-    <script src="js/p5.dom.js"></script>
 </head>
 
 <body class="theme-dark">
@@ -23,18 +21,23 @@
             <div class="page" data-name="home">
                 <div class="navbar color-theme-orange">
                     <div class="navbar-inner sliding">
-                        <div class="right">
-                        </div>
+                        See a cute animal? Share it and make someone smile.
                     </div>
                 </div>
+                <div class="right"></div>
                 <div class="page-content">
 
                     <!-- scrollable page content -->
-                        <a class="button button-outline button-raised button-fill" id="takePic">Take a Photo!</a>
-                        <div id="blah">
-                        </div>
+                    <div id="gallery"></div>
+                    <a class="button button-outline button-raised button-fill" id="sendIt">Send to a friend!</a>
+                    <a class="button button-outline button-raised button-fill" id="takePic">Take a Photo!</a>
+                    <a>
+                        <ul id="contacts-list"></ul>
+                    </a>
+
+                    <!-- <a class="button button-outline button-raised button-fill" id="other">Send to a friend</a> -->
                 </div>
-<!--                         <button class="button button-round button raised button-fill">Make Mosaic</button>
+<!--                         
                 </div> <!-- end page content -->
 
             </div> <!-- end page -->

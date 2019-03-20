@@ -12,11 +12,14 @@ var app = new Framework7({
 var mainView = app.views.create('.view-main');
 
 document.addEventListener("deviceready", init, false);
+var tp = document.getElementById("takePic");
+var si = document.getElementById("sendIt");
+si.style.visibility = "hidden";
 
 function init() {
         //camera code goes here
 
-    $("#takePic").on("click", takePic);
+    $(tp).on("click", takePic);
 
     function takePic() {
         console.log("user tapped")
@@ -24,18 +27,25 @@ function init() {
     }
 
     var cameraOptions = {
-        //number range 0-100, default is 50
-        quality: 80
-        //default is back
-        // saveToPhotoAlbum: true
+        quality: 100
     }
    
     function cameraSuccess(imageData) {
         console.log("great pic!");
-        //$("#takePic").append("<img src='" + imageData + "'>");
-          loadImage(imageData, img => {
-            image(img, 0, 0);
-        });
+
+        si.style.visibility = "visible";
+        si.style.marginTop = "125px";
+        si.style.paddingBottom = "55px";
+
+        $("#gallery").append("<img src='" + imageData + "'>");
+        if(tp.style.display === "none"){
+            tp.style.display = "block";
+            // otherE.classList.toggle("active");
+            // tp.classList.toggle("active");
+        }
+        else {
+            tp.style.display = "none";
+        }
     }
 
 
@@ -43,17 +53,43 @@ function init() {
         alert("failure due to: " + message);
     }
 
-    // $("gallery").append("<img src='"+imgURL);
+}
+
+si.addEventListener("click", function(){
+    si.style.display = "none";
+    listContacts();
+});
+
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady(){
+    console.log(navigator.contatcs);
+}
+
+
+function conSuccess(contacts){
+    var ul = document.getElementById('contacts-list');
+    for (var i = 0; i < contacts.length; i++){
+        var newLI = document.createElement('li');
+        newLI.innerHTML = contacts[i].name.formatted;
+        ul.appendChild(newLI);
+    }
 }
 
 
 
-function preload(){
-
+function conError(contactError){
+    alert('Error!');
 }
 
-function setup(){
-    let canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent('blah');
-
+function listContacts(){
+    var options = new ContactFindOptions();
+    options.filter="";
+    options.multiple = true;
+    var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+    navigator.contacts.find(fields, conSuccess, conError, options);
+    options.hasPhoneNumber = true;
+    options.desiredFields = [navigator.contacts.fieldType.id];
 }
+

@@ -2,6 +2,34 @@ img{
     width: 100%;
 }
 
+.page-content{
+    /* image from : https://www.toptal.com/designers/subtlepatterns/ 
+    made by: Federica Pelzel */
+    background-image: url("../images/dark-honeycomb.png");
+}
+
 .md .button.button-fill{
 	background-color: teal;
+}
+
+
+.navbar-inner{
+    text-align: center;
+}
+
+
+#takePic.button.button-outline.button-raised.button-fill{
+    margin-top: 365px; 
+    padding-bottom: 55px; 
+}
+
+
+
+#gallery {
+    transform: rotate(90deg);
+    margin-top: 100px;
+}
+
+ul{
+    padding-top: 70px;
 }
